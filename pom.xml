@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>hello-world-java-project</artifactId>
+    <artifactId>hello-world</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <url>http://maven.apache.org</url>
@@ -38,7 +38,7 @@
     </dependencies>
 
     <build>
-        <finalName>hello-world-java-project</finalName>
+        <finalName>hello-world</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
