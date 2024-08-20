@@ -10,23 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Obtain Jenkins Crumb
-        id: get_crumb
-        env:
-          JENKINS_URL: ${{ secrets.JENKINS_URL }}
-          JENKINS_USER: ${{ secrets.JENKINS_USER }}
-          JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
-        run: |
-          crumb_response=$(curl -s -u $JENKINS_USER:$JENKINS_API_TOKEN $JENKINS_URL/crumbIssuer/api/json)
-          echo "CRUMB=$(echo $crumb_response | jq -r '.crumb')" >> $GITHUB_ENV
-          echo "CRUMB_HEADER=$(echo $crumb_response | jq -r '.crumbRequestField')" >> $GITHUB_ENV
-
       - name: Trigger Jenkins Job
         env:
           JENKINS_URL: ${{ secrets.JENKINS_URL }}
           JENKINS_USER: ${{ secrets.JENKINS_USER }}
           JENKINS_API_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
         run: |
-          curl -X POST $JENKINS_URL/job/your-job-name/build \
-          --user $JENKINS_USER:$JENKINS_API_TOKEN \
-          --header "$CRUMB_HEADER: $CRUMB"
+          curl -X POST $JENKINS_URL/job/demodeploy/build?token=akash-token --user $JENKINS_USER:$JENKINS_API_TOKEN 
